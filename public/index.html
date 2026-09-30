@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Financial Reconciliation Engine</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Enterprise Financial Reconciliation Engine</h1>
+        <p class="subtitle">Powered by C++ Data Structures (HashTable, MaxHeap, AVL Tree, Trie, DoublyLinkedList) & WebAssembly</p>
+
+        <!-- CSV Upload Section -->
+        <div class="card upload-section">
+            <h2>1. Data Ingestion</h2>
+            <div class="field">
+                <label for="bankCsvInput">Bank Statement CSV:</label>
+                <input type="file" id="bankCsvInput" accept=".csv">
+            </div>
+            <div class="field">
+                <label for="glCsvInput">General Ledger CSV:</label>
+                <input type="file" id="glCsvInput" accept=".csv">
+            </div>
+            <button id="runBtn" onclick="runReconciliation()">Run Engine & Reconcile</button>
+        </div>
+
+        <!-- Reconciliation Results Section -->
+        <div class="card results-card" id="results" style="display:none;">
+            <h2>2. Engine Metrics & Audit Summary</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-label">Total Volume:</span>
+                    <strong id="statProcessed">0</strong>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Matched (HashTable):</span>
+                    <strong id="statMatched" class="green">0</strong>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Discrepancies (MaxHeap):</span>
+                    <strong id="statUnmatched" class="red">0</strong>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Custom Trie Search Interactive Feature -->
+            <div class="trie-search-section">
+                <h3>3. Vendor Prefix Lookup (Custom Trie)</h3>
+                <p>Type a vendor name prefix (e.g., <code>AMZN</code>, <code>VERCEL</code>, <code>STORM</code>) to query the C++ Trie:</p>
+                <div class="search-box">
+                    <input type="text" id="prefixInput" placeholder="Enter prefix..." onkeyup="checkVendorPrefix()">
+                    <span id="trieResult" class="badge">Awaiting Input...</span>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Export Audit Trail -->
+            <div class="export-section">
+                <h3>4. Audit Trail & CSV Export</h3>
+                <p>Generated via standard C++ file streams (<code>std::ofstream</code>) in virtual memory.</p>
+                <button class="export-btn" onclick="downloadReport()">Download Report CSV</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="engine.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
